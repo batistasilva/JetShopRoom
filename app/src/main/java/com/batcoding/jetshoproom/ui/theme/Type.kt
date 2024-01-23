@@ -1,4 +1,4 @@
-package com.batcoding.jetshoproom.ui.theme
+package com.batcoding.jetshoppingroom.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

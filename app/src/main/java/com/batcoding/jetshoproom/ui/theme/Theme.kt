@@ -1,4 +1,4 @@
-package com.batcoding.jetshoproom.ui.theme
+package com.batcoding.jetshoppingroom.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun JetShopRoomTheme(
+fun JetShoppingRoomTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

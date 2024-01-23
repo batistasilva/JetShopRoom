@@ -1,4 +1,4 @@
-package com.batcoding.jetshoproom
+package com.batcoding.jetshoppingroom
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,19 +10,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.batcoding.jetshoproom.ui.theme.JetShopRoomTheme
+import com.batcoding.jetshoppingroom.ui.home.HomeScreen
+import com.batcoding.jetshoppingroom.ui.theme.JetShoppingRoomTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetShopRoomTheme {
+            JetShoppingRoomTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    HomeScreen(onNavigate = {})
                 }
             }
         }
@@ -40,7 +41,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    JetShopRoomTheme {
+    JetShoppingRoomTheme {
         Greeting("Android")
     }
 }
