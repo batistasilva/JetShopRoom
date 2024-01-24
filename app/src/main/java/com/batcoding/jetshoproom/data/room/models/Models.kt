@@ -25,7 +25,7 @@ data class Item(
     val qty:String,
     val listId:Int,
     val storeIdFk:Int,
-    val date: Date?,
+    val date: Date,
     val isChecked: Boolean
 )
 
@@ -35,5 +35,6 @@ data class Store(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val listIdFk: Int,
+    val storeName:String,
 )
 
