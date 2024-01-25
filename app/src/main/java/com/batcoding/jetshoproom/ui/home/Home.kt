@@ -22,6 +22,7 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -30,14 +31,19 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Shapes
+import androidx.compose.material3.Surface
+import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.batcoding.jetshoppingroom.data.room.ItemsWithStoreAndList
 import com.batcoding.jetshoppingroom.data.room.models.Item
@@ -82,13 +88,34 @@ fun HomeScreen(
                 }
             }
             items(homeState.items){
-                ShoppingItems(
-                    item = it,
-                    isChecked = it.item.isChecked,
-                    onCheckedChange = homeViewModel::onItemCheckedChange
-                ) {
-                    onNavigate.invoke(it.item.id)
-                }
+                val dismissState = rememberDismissState(
+                    confirmValueChange = { value ->
+                        if (value == DismissValue.DismissedToEnd){
+                            homeViewModel.deleteItem(it.item)
+                        }
+                        true
+                    }
+                )
+                SwipeToDismiss(
+                    state = dismissState,
+                    background = {
+                        Surface(
+                            modifier = Modifier.fillMaxWidth(),
+                            color = Color.Red
+                        ) {
+
+                        }
+                    },
+                    dismissContent = {
+                        ShoppingItems(
+                            item = it,
+                            isChecked = it.item.isChecked,
+                            onCheckedChange = homeViewModel::onItemCheckedChange
+                        ) {
+                            onNavigate.invoke(it.item.id)
+                        }
+                    }
+                )
             }
         }
     }

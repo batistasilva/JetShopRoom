@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.batcoding.jetshoppingroom.ui.home.HomeScreen
 import com.batcoding.jetshoppingroom.ui.theme.JetShoppingRoomTheme
+import com.batcoding.jetshoproom.ui.JetShoppingNavigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +24,15 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(onNavigate = {})
+                    JetShoppingApp()
                 }
             }
         }
+    }
+    
+    @Composable
+    fun JetShoppingApp(){
+        JetShoppingNavigation()
     }
 }
 
